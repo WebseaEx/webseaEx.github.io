@@ -409,12 +409,12 @@ body > pre {
            <h1 class="curproject-name"> 交易所开放接口 </h1> 
 <h3 id="">公共信息</h3>
 <h1>交易所接口文档</h1>
-<p>文档版本: <em>v1.2.2_23-05-30</em></p>
-<p>接口协议: <em>http/https</em></p>
-<p>报文格式: <em>json</em></p>
-<p>报文编码: <em>utf-8</em></p>
-<p>币币接口地址: <em>https://oapi.websea.com/</em></p>
-<p>合约接口地址: <em>https://coapi.websea.com/</em></p>
+<p>文档版本: <em>v1.2.2_23-05-30</em><br>
+接口协议: <em>http/https</em><br>
+报文格式: <em>json</em><br>
+报文编码: <em>utf-8</em><br>
+币币接口地址: <em>https://oapi.websea.com/</em><br>
+合约接口地址: <em>https://coapi.websea.com/</em></p>
 <h1>认证授权</h1>
 <p>关于token、secret-key申请和修改，请在“个人中心 - 开放接口”页面进行相关操作。</p>
 <h3>接口权限验证</h3>
@@ -433,14 +433,16 @@ curl\_setopt\($ch\, CURLOPT\_HTTPHEADER\, $header\);
 <p>签名，使用$token,$secret_key,$nonce,$_POST,$_GET计算得出，服务端验证签名以确定请求是否来自用户。</p>
 <h3>生成Signature的Python示例代码：</h3>
 <pre><code>def sign(Nonce,data=dict()):
-<p>tmp = list()</p>
-<p>tmp.append(TOKEN)</p>
-<p>tmp.append(SECRET)</p>
-<p>tmp.append(Nonce)</p>
-<p>for d,x in data.items():</p>
-<p>tmp.append(str(d) + &quot;=&quot; + str(x))</p>
-<p>return hashlib.sha1(''.join(sorted(tmp))).hexdigest()<br>
-</code></pre></p>
+<pre><code>tmp = list()
+tmp.append(TOKEN)
+tmp.append(SECRET)
+tmp.append(Nonce)
+for d,x in data.items():
+	tmp.append(str(d) + &quot;=&quot; + str(x))
+
+return hashlib.sha1(''.join(sorted(tmp))).hexdigest()
+</code></pre>
+<p></code></pre></p>
 <h3>生成Signature的PHP示例代码：</h3>
 <pre><code>private function signature($nonce)
 {
@@ -460,10 +462,10 @@ curl\_setopt\($ch\, CURLOPT\_HTTPHEADER\, $header\);
 }
 </code></pre>
 <h3>生成Signature的Java示例代码：</h3>
-<pre><code>		List paramArr = new ArrayList&lt;&gt;();
-		String token = "57ba172a6be125c";
-		String nonce = "1534927978_ab43c";
-		String secretKey = "ca2f449826f9980ca";
+<pre><code>        List paramArr = new ArrayList&lt;&gt;();
+        String token = "57ba172a6be125c";
+        String nonce = "1534927978_ab43c";
+        String secretKey = "ca2f449826f9980ca";
         paramArr.add(token);
         paramArr.add(secretKey);
         paramArr.add(nonce);
@@ -827,145 +829,11 @@ $signature 为 731faa3d170bb746a767cea58ae563830594e1fe<br>
 </table>
 <p>注：以上是每个接口最大访问频率，开放接口全局限制：10秒100次，（单个APIKEY维度限制，建议行情API访问也要加上签名，否则限频会更严格），请合理使用访问额度。</p>
 <h3>python2 demo</h3>
-<pre><code>#!/usr/bin/env python2
-#encoding=utf8
-<p>import sys</p>
-<p>reload(sys)</p>
-<p>sys.setdefaultencoding('utf-8')</p>
-<p>import json</p>
-<p>import time</p>
-<p>import hashlib</p>
-<p>import requests</p>
-<p>import random</p>
-<p>import string</p>
-<p>TOKEN = &quot;5c9dc98fb92e2&quot;</p>
-<p>SECRET = &quot;hkyavn13ybc1qunp4rpb&quot;</p>
-<p>HOST = &quot;http://api.xxx.com&quot;</p>
-<p>'''</p>
-<p>request用法说明</p>
-<p>args = dict()</p>
-<p>args['url']    = 'http://blog.csdn.net/iloveyin/article/details/21444613'</p>
-<p>args['method'] = 'GET'</p>
-<p>args['cookies'] = {}</p>
-<p>args['data']   = {}</p>
-<p>args['header'] = {&quot;user-agent&quot;:&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)&quot;}</p>
-<p>args['proxy'] = '10.0.0.5'</p>
-<p>args['timeout'] = 30</p>
-<p>args['encoding'] = 'gbk'</p>
-<p>result = request(args)</p>
-<p>result['code']</p>
-<p>result['content']</p>
-<p>'''</p>
-<p>#http请求方法</p>
-<p>def request(args):</p>
-<p>if not (args.has_key('timeout')):<br>
-args['timeout'] = 60</p>
-<p>#代理设置proxy<br>
-if not (args.has_key('proxy')):<br>
-proxies = None<br>
-else:<br>
-if not args.has_key('proxy') == '':<br>
-if not args.has_key('proxy_type'):<br>
-args['proxy_type'] = 'http'<br>
-if args['proxy_type'] == 'http':<br>
-proxies = {&quot;http&quot;:&quot;http://&quot;+args['proxy'],&quot;https&quot;:&quot;http://&quot;+args['proxy']}<br>
-elif args['proxy_type'] == 'socks':<br>
-proxies = {&quot;http&quot;:&quot;socks5://&quot;+args['proxy'],&quot;https&quot;:&quot;socks5://&quot;+args['proxy']}<br>
-else:<br>
-proxies = None</p>
-<p>if not (args.has_key('method')):<br>
-args['method'] = 'GET'<br>
-else:<br>
-args['method'] = args['method'].upper()</p>
-<p>#header设置<br>
-if not (args.has_key('headers')):<br>
-args['headers'] = {}</p>
-<p>if not args['headers'].has_key('user-agent'):<br>
-args['headers']['user-agent'] = &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;</p>
-<p>#Cookies<br>
-cookies = {}<br>
-if args.has_key('cookies'):<br>
-cookies = args['cookies']</p>
-<p>if not args.has_key('data'):<br>
-args['data'] = {}</p>
-<p>args['headers'].update(mkHeader(args['data']))</p>
-<p>if args['method'] == 'GET':<br>
-r = requests.get(args['url'], params=args['data'],cookies=cookies,headers=args['headers'],timeout=int(args['timeout']), proxies=proxies, verify=False)<br>
-elif args['method'] == 'POST':<br>
-r = requests.post(args['url'], data=args['data'],cookies=cookies,headers=args['headers'],timeout=int(args['timeout']), proxies=proxies, verify=False)</p>
-<p>result = {}<br>
-result['code'] = r.status_code<br>
-ck = {}<br>
-for cookie in r.cookies:<br>
-ck.update({cookie.name : cookie.value})<br>
-result['cookies'] = ck<br>
-result['headers'] = r.headers<br>
-result['content'] = r.content</p>
-<p>return result</p>
-<p>#http 带签名的header生成方法</p>
-<p>def mkHeader(data=dict()):</p>
-<p>ran_str = ''.join(random.sample(string.ascii_letters + string.digits, 5))</p>
-<p>Nonce = &quot;%d_%s&quot; % (int(time.time()),ran_str)</p>
-<p>header=dict()</p>
-<p>header['Token'] = TOKEN</p>
-<p>header['Nonce'] = Nonce</p>
-<p>header['Signature'] = sign(Nonce,data)</p>
-<p>return header</p>
-<p>#签名生成方法</p>
-<p>def sign(Nonce,data=dict()):</p>
-<p>tmp = list()<br>
-tmp.append(TOKEN)<br>
-tmp.append(SECRET)<br>
-tmp.append(Nonce)<br>
-for d,x in data.items():<br>
-tmp.append(str(d) + &quot;=&quot; + str(x))</p>
-<p>return hashlib.sha1(''.join(sorted(tmp))).hexdigest()</p>
-<p>if name == 'main':</p>
-<p>#获取K线<br>
-args = dict()<br>
-args['url']    	= HOST +  '/openApi/market/kline'<br>
-args['method']	= 'GET'<br>
-args['data']	= dict()<br>
-args['data']['symbol']	= &quot;BTC-USDT&quot;<br>
-args['data']['period']	= &quot;1min&quot;<br>
-args['data']['size']	= 2000</p>
-<p>result = request(args)</p>
-<p>if result['code']==200:<br>
-print result['content']<br>
-else:<br>
-print result</p>
-<p>print '-'*100</p>
-<p>#查询我的资产<br>
-args = dict()<br>
-args['url'] =  HOST + '/openApi/wallet/list'<br>
-args['method'] = 'GET'<br>
-args['data'] = dict()<br>
-args['data']['currency'] = &quot;BTC&quot;</p>
-<p>result = request(args)</p>
-<p>if result['code']==200:<br>
-print result['content']<br>
-else:<br>
-print result</p>
-<p>print '-'*100</p>
-<p>#委托挂单<br>
-args = dict()<br>
-args['url'] = HOST + '/openApi/entrust/add'<br>
-args['method'] = 'POST'<br>
-args['data'] = dict()<br>
-args['data']['symbol'] = &quot;BTC-USDT&quot;<br>
-args['data']['type'] = &quot;buy-limit&quot;<br>
-args['data']['amount'] = 1.343432<br>
-args['data']['price'] = 500.323214</p>
-<p>result = request(args)</p>
-<p>if result['code']==200:<br>
-print result['content']<br>
-else:<br>
-print result<br>
-</code></pre></p>
-<h2>python3 demo</h2>
-<pre><code>#!/usr/bin/env python
+<pre>#!/usr/bin/env python2
 #encoding=utf8
 <p>import sys<br>
+reload(sys)<br>
+sys.setdefaultencoding('utf-8')<br>
 import json<br>
 import time<br>
 import hashlib<br>
@@ -975,7 +843,7 @@ import string</p>
 <p>TOKEN = &quot;5c9dc98fb92e2&quot;<br>
 SECRET = &quot;hkyavn13ybc1qunp4rpb&quot;<br>
 HOST = &quot;http://api.xxx.com&quot;</p>
-<p>'''<br>
+<p>&quot;&quot;&quot;<br>
 request用法说明</p>
 <p>args = dict()<br>
 args['url']    = 'http://blog.csdn.net/iloveyin/article/details/21444613'<br>
@@ -989,7 +857,167 @@ args['encoding'] = 'gbk'</p>
 <p>result = request(args)</p>
 <p>result['code']<br>
 result['content']</p>
-<p>'''</p>
+<p>&quot;&quot;&quot;</p>
+<p>#http请求方法<br>
+def request(args):</p>
+<pre><code>if not (args.has_key('timeout')):
+	args['timeout'] = 60
+
+#代理设置proxy
+if not (args.has_key('proxy')):
+	proxies = None
+else:
+	if not args.has_key('proxy') == '':
+		if not args.has_key('proxy_type'):
+			args['proxy_type'] = 'http'
+		if args['proxy_type'] == 'http':
+			proxies = {&quot;http&quot;:&quot;http://&quot;+args['proxy'],&quot;https&quot;:&quot;http://&quot;+args['proxy']}
+		elif args['proxy_type'] == 'socks':
+			proxies = {&quot;http&quot;:&quot;socks5://&quot;+args['proxy'],&quot;https&quot;:&quot;socks5://&quot;+args['proxy']}
+	else:
+		proxies = None
+
+if not (args.has_key('method')):
+	args['method'] = 'GET'
+else:
+	args['method'] = args['method'].upper()
+
+#header设置
+if not (args.has_key('headers')):
+	args['headers'] = {}
+
+if not args['headers'].has_key('user-agent'):
+	args['headers']['user-agent'] = &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36&quot;
+
+
+#Cookies
+cookies = {}
+if args.has_key('cookies'):
+	cookies = args['cookies']
+
+if not args.has_key('data'):
+	args['data'] = {}
+	
+args['headers'].update(mkHeader(args['data']))
+
+if args['method'] == 'GET':
+	r = requests.get(args['url'], params=args['data'],cookies=cookies,headers=args['headers'],timeout=int(args['timeout']), proxies=proxies, verify=False)
+elif args['method'] == 'POST':
+	r = requests.post(args['url'], data=args['data'],cookies=cookies,headers=args['headers'],timeout=int(args['timeout']), proxies=proxies, verify=False)
+
+result = {}
+result['code'] = r.status_code
+ck = {}
+for cookie in r.cookies:
+	ck.update({cookie.name : cookie.value})
+result['cookies'] = ck
+result['headers'] = r.headers
+result['content'] = r.content
+
+return result
+</code></pre>
+<p>#http 带签名的header生成方法<br>
+def mkHeader(data=dict()):<br>
+ran_str = ''.join(random.sample(string.ascii_letters + string.digits, 5))<br>
+Nonce = &quot;%d_%s&quot; % (int(time.time()),ran_str)<br>
+header=dict()<br>
+header['Token'] = TOKEN<br>
+header['Nonce'] = Nonce<br>
+header['Signature'] = sign(Nonce,data)</p>
+<pre><code>return header
+</code></pre>
+<p>#签名生成方法<br>
+def sign(Nonce,data=dict()):</p>
+<pre><code>tmp = list()
+tmp.append(TOKEN)
+tmp.append(SECRET)
+tmp.append(Nonce)
+for d,x in data.items():
+	tmp.append(str(d) + &quot;=&quot; + str(x))
+
+return hashlib.sha1(''.join(sorted(tmp))).hexdigest()
+</code></pre>
+<p>if <strong>name</strong> == '<strong>main</strong>':</p>
+<pre><code>#获取K线
+args = dict()
+args['url']    	= HOST +  '/openApi/market/kline'
+args['method']	= 'GET'
+args['data']	= dict()
+args['data']['symbol']	= &quot;BTC-USDT&quot;
+args['data']['period']	= &quot;1min&quot;
+args['data']['size']	= 2000
+
+result = request(args)
+
+if result['code']==200:
+	print result['content']
+else:
+	print result
+
+print '-'*100
+
+#查询我的资产
+args = dict()
+args['url'] =  HOST + '/openApi/wallet/list'
+args['method'] = 'GET'
+args['data'] = dict()
+args['data']['currency'] = &quot;BTC&quot;
+
+result = request(args)
+
+if result['code']==200:
+	print result['content']
+else:
+	print result
+
+print '-'*100
+
+#委托挂单
+args = dict()
+args['url'] = HOST + '/openApi/entrust/add'
+args['method'] = 'POST'
+args['data'] = dict()
+args['data']['symbol'] = &quot;BTC-USDT&quot;
+args['data']['type'] = &quot;buy-limit&quot;
+args['data']['amount'] = 1.343432
+args['data']['price'] = 500.323214
+
+result = request(args)
+
+if result['code']==200:
+	print result['content']
+else:
+	print result
+</code></pre>
+</pre>
+<h2>python3 demo</h2>
+<pre><code>#!/usr/bin/env python
+#encoding=utf8
+<p>import sys<br>
+import json<br>
+import time<br>
+import hashlib<br>
+import requests<br>
+import random<br>
+import string</p>
+<p>TOKEN = &quot;5c9dc98fb92e2&quot;<br>
+SECRET = &quot;hkyavn13ybc1qunp4rpb&quot;<br>
+HOST = &quot;http://api.xxx.com&quot;</p>
+<p>&quot;&quot;&quot;<br>
+request用法说明</p>
+<p>args = dict()<br>
+args['url']    = 'http://blog.csdn.net/iloveyin/article/details/21444613'<br>
+args['method'] = 'GET'<br>
+args['cookies'] = {}<br>
+args['data']   = {}<br>
+args['header'] = {&quot;user-agent&quot;:&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)&quot;}<br>
+args['proxy'] = '10.0.0.5'<br>
+args['timeout'] = 30<br>
+args['encoding'] = 'gbk'</p>
+<p>result = request(args)</p>
+<p>result['code']<br>
+result['content']</p>
+<p>&quot;&quot;&quot;</p>
 <p>#http请求方法<br>
 def request(args):</p>
 <pre><code>if not 'timeout' in args:
@@ -1391,7 +1419,7 @@ else:
     <tr>
       <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
     </tr>
-  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> asks</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">卖盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-24><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-23><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bids</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">买盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-26><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-25><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ts</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> asks</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">卖盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-35><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-34><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bids</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">买盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-37><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-36><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ts</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
                </tbody>
               </table>
 <h2 id="u67e5u8be2u5e02u573au6210u4ea40a3ca20id3du67e5u8be2u5e02u573au6210u4ea43e203ca3e">查询市场成交
@@ -2495,7 +2523,7 @@ else:
     <tr>
       <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
     </tr>
-  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> asks</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">卖盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-28><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-27><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bids</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">买盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-30><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-29><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ts</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> asks</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">卖盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-39><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-38><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> bids</span></td><td key=1><span>array []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">买盘 [price, amount]</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>array</span></p></td></tr><tr key=array-41><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=array-40><td key=0><span style="padding-left: 60px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ts</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
                </tbody>
               </table>
 <h2 id="u83b7u53d6u6807u8bb0u4ef70a3ca20id3du83b7u53d6u6807u8bb0u4ef73e203ca3e">获取标记价
@@ -2923,7 +2951,7 @@ else:
     <tr>
       <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
     </tr>
-  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> failed</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-31><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> success</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-32><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> failed</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-42><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> success</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-43><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr>
                </tbody>
               </table>
 <h2 id="u67e5u8be2u5408u7ea6u5f53u524du59d4u62580a3ca20id3du67e5u8be2u5408u7ea6u5f53u524du59d4u62583e203ca3e">查询合约当前委托
@@ -3259,7 +3287,7 @@ else:
     <tr>
       <th key=name>名称</th><th key=type>类型</th><th key=required>是否必须</th><th key=default>默认值</th><th key=desc>备注</th><th key=sub>其他信息</th>
     </tr>
-  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> amount</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托数量</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> close_orders</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">开仓时对应止盈止损平仓单</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-33><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> contract_type</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">open开仓 close平仓</span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ctime</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托时间</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> deal_amount</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">成交数量</span></td><td key=5></td></tr><tr key=0-2-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> lever_rate</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">杠杆倍数</span></td><td key=5></td></tr><tr key=0-2-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> order_id</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">订单号</span></td><td key=5></td></tr><tr key=0-2-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> price</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托价</span></td><td key=5></td></tr><tr key=0-2-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> price_avg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">成交均价</span></td><td key=5></td></tr><tr key=0-2-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> profit</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">总盈亏</span></td><td key=5></td></tr><tr key=0-2-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> status</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1,状态:1=挂单中,2=部分成交,3=已成交,4=撤销中,5=部分撤销,6=已撤销</span></td><td key=5></td></tr><tr key=0-2-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">交易对</span></td><td key=5></td></tr><tr key=0-2-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> type</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托类型</span></td><td key=5></td></tr>
+  </thead><tbody className="ant-table-tbody"><tr key=0-0><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errmsg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-1><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> errno</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2><td key=0><span style="padding-left: 0px"><span style="color: #8c8a8a"></span> result</span></td><td key=1><span>object</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-0><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> amount</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托数量</span></td><td key=5></td></tr><tr key=0-2-1><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> close_orders</span></td><td key=1><span>string []</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">开仓时对应止盈止损平仓单</span></td><td key=5><p key=3><span style="font-weight: '700'">item 类型: </span><span>string</span></p></td></tr><tr key=array-44><td key=0><span style="padding-left: 40px"><span style="color: #8c8a8a">├─</span> </span></td><td key=1><span></span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap"></span></td><td key=5></td></tr><tr key=0-2-2><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> contract_type</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">open开仓 close平仓</span></td><td key=5></td></tr><tr key=0-2-3><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> ctime</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托时间</span></td><td key=5></td></tr><tr key=0-2-4><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> deal_amount</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">成交数量</span></td><td key=5></td></tr><tr key=0-2-5><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> lever_rate</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">杠杆倍数</span></td><td key=5></td></tr><tr key=0-2-6><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> order_id</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">订单号</span></td><td key=5></td></tr><tr key=0-2-7><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> price</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托价</span></td><td key=5></td></tr><tr key=0-2-8><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> price_avg</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">成交均价</span></td><td key=5></td></tr><tr key=0-2-9><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> profit</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">总盈亏</span></td><td key=5></td></tr><tr key=0-2-10><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> status</span></td><td key=1><span>integer</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">1,状态:1=挂单中,2=部分成交,3=已成交,4=撤销中,5=部分撤销,6=已撤销</span></td><td key=5></td></tr><tr key=0-2-11><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> symbol</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">交易对</span></td><td key=5></td></tr><tr key=0-2-12><td key=0><span style="padding-left: 20px"><span style="color: #8c8a8a">├─</span> type</span></td><td key=1><span>string</span></td><td key=2>非必须</td><td key=3></td><td key=4><span style="white-space: pre-wrap">委托类型</span></td><td key=5></td></tr>
                </tbody>
               </table>
 <h2 id="u5408u7ea6u59d4u6258u8be6u60c50a3ca20id3du5408u7ea6u59d4u6258u8be6u60c53e203ca3e">合约委托详情
