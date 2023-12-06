@@ -5,7 +5,7 @@ Welcome to the Websea OpenAPI. Below you will find links to our API documentatio
 ## Language Versions
 
 - **English**: [Access Documentation](https://webseaex.github.io/openapi_en.html)
-- **Simplified Chinese**: [Access Documentation](https://webseaex.github.io/openapi_cn.html)
+- **Simplified Chinese**: [Access Documentation](https://webseaex.github.io/zh/)
 - **Traditional Chinese**: [Access Documentation](https://webseaex.github.io/openapi_tc.html)
 - **Japanese**: [Access Documentation](https://webseaex.github.io/openapi_jp.html)
 
@@ -13,7 +13,7 @@ Welcome to the Websea OpenAPI. Below you will find links to our API documentatio
 ## Quick Links
 
 - [OpenAPI Documentation EN](https://webseaex.github.io/openapi_en.html)
-- [OpenAPI Documentation CN](https://webseaex.github.io/openapi_cn.html)
+- [OpenAPI Documentation CN](https://webseaex.github.io/zh/)
 - [OpenAPI Documentation TC](https://webseaex.github.io/openapi_tc.html)
 - [OpenAPI Documentation JP](https://webseaex.github.io/openapi_jp.html)
 
@@ -40,7 +40,7 @@ Thank you for choosing Websea OpenAPI!
 ## 语言版本
 
 - **英文（English）**: [访问文档](https://webseaex.github.io/openapi_en.html)
-- **简体中文（Simplified Chinese）**: [访问文档](https://webseaex.github.io/openapi_cn.html)
+- **简体中文（Simplified Chinese）**: [访问文档](https://webseaex.github.io/zh/)
 - **繁体中文（Traditional Chinese）**: [访问文档](https://webseaex.github.io/openapi_tc.html)
 - **日语（Japanese）**: [访问文档](https://webseaex.github.io/openapi_jp.html)
 
@@ -48,7 +48,7 @@ Thank you for choosing Websea OpenAPI!
 ## 快速链接
 
 - [OpenAPI 文档 EN](https://webseaex.github.io/openapi_en.html)
-- [OpenAPI 文档 CN](https://webseaex.github.io/openapi_cn.html)
+- [OpenAPI 文档 CN](https://webseaex.github.io/zh/)
 - [OpenAPI 文档 TC](https://webseaex.github.io/openapi_tc.html)
 - [OpenAPI 文档 JP](https://webseaex.github.io/openapi_jp.html)
 
