@@ -1987,21 +1987,21 @@
 </tr>
 <tr>
 <td>from</td>
-<td>否</td>
+<td>No</td>
 <td>int</td>
 <td>122</td>
 <td>Start query from order_id</td>
 </tr>
 <tr>
 <td>direct</td>
-<td>否</td>
+<td>No</td>
 <td>string</td>
 <td>prev</td>
 <td>Query direction (default prev), prev goes backward, time (or ID) in descending order; next goes forward, time (or ID) in ascending order. (For example, a list of numbers: 1, 2, 3, 4, 5. from=4, prev has 3, 2, 1; next only has 5)</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>否</td>
+<td>No</td>
 <td>int</td>
 <td>20</td>
 <td>Number of results per page returned, default is 20, maximum is 100 (refer to the pagination description for more details)</td>
@@ -2029,21 +2029,21 @@
 <tbody>
 <tr>
 <td>errno</td>
-<td>is</td>
+<td>Yes</td>
 <td>int</td>
 <td>0</td>
 <td>Return status code</td>
 </tr>
 <tr>
 <td>errmsg</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>Success</td>
 <td>Return message</td>
 </tr>
 <tr>
 <td>result</td>
-<td>is</td>
+<td>Yes</td>
 <td>object</td>
 <td>See example</td>
 <td>Return data</td>
@@ -2064,7 +2064,7 @@
 <tbody>
 <tr>
 <td>order_id</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>11535</td>
 <td>Order Number</td>
@@ -2092,14 +2092,14 @@
 </tr>
 <tr>
 <td>price_avg</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>15</td>
 <td>Average transaction price</td>
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>是</td>
+<td>Yes</td>
 <td>int</td>
 <td>10</td>
 <td>Leverage Ratio</td>
@@ -2134,7 +2134,7 @@
 </tr>
 <tr>
 <td>contract_type</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>open</td>
 <td>Entering a position (open for entering a position, close for closing a position)</td>

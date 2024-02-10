@@ -1941,28 +1941,28 @@
 <tbody>
 <tr>
 <td>symbol</td>
-<td>否</td>
+<td>No</td>
 <td>string</td>
 <td>EOS-USDT</td>
 <td>Trading pair (If not provided, then all pairs)</td>
 </tr>
 <tr>
 <td>from</td>
-<td>否</td>
+<td>No</td>
 <td>int</td>
 <td>122</td>
 <td>Query starting order_id</td>
 </tr>
 <tr>
 <td>direct</td>
-<td>否</td>
+<td>No</td>
 <td>string</td>
 <td>prev</td>
 <td>Query direction (default prev), prev means backwards, time (or ID) in descending order; next means forwards, time (or ID) in ascending order. (Example of a series: 1, 2, 3, 4, 5. from=4, prev has 3, 2, 1; next only has 5)</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>否</td>
+<td>No</td>
 <td>int</td>
 <td>20</td>
 <td>The number of results returned per page, default is 20, maximum is 100 (see the pagination section for details)</td>
@@ -1990,21 +1990,21 @@
 <tbody>
 <tr>
 <td>errno</td>
-<td>is</td>
+<td>Yes</td>
 <td>int</td>
 <td>0</td>
 <td>Return status code</td>
 </tr>
 <tr>
 <td>errmsg</td>
-<td>is</td>
+<td>Yes</td>
 <td>string</td>
 <td>Success</td>
 <td>Return message</td>
 </tr>
 <tr>
 <td>result</td>
-<td>is</td>
+<td>Yes</td>
 <td>object</td>
 <td>See example</td>
 <td>Returned data</td>
@@ -2067,7 +2067,7 @@
 </tr>
 <tr>
 <td>type</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>buy-limit</td>
 <td>Order Type</td>
@@ -2088,21 +2088,21 @@
 </tr>
 <tr>
 <td>stop_profit_price</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>15</td>
 <td>Take profit price</td>
 </tr>
 <tr>
 <td>stop_loss_price</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>10</td>
 <td>Stop-loss price</td>
 </tr>
 <tr>
 <td>implement_status</td>
-<td>是</td>
+<td>Yes</td>
 <td>int</td>
 <td>3</td>
 <td>Execution status (0: Pending 1: Open Order 2: Partially Executed 3: Fully Executed 4: Execution Failure 5: Revoked)</td>

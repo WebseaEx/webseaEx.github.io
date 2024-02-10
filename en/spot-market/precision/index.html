@@ -1930,10 +1930,26 @@
 <h3 id="example">Example</h3>
 <p><code>curl -d  /openApi/market/precision</code></p>
 <h3 id="submission-parameters">Submission Parameters</h3>
-<p><div class="language-text highlight"><span class="filename">Text Only</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>| Parameter Name | Required | Type | Example | Description |
-</span></code></pre></div>
-| -- | -- | -- | -- | -- |
-| symbol | 否 | string | BTC-USDT | Trading pair, optional, if not filled, the precision of all trading pairs is returned |</p>
+<table>
+<thead>
+<tr>
+<th>Parameter Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>symbol</td>
+<td>No</td>
+<td>string</td>
+<td>BTC-USDT</td>
+<td>Trading pair, optional, if not filled, the precision of all trading pairs is returned</td>
+</tr>
+</tbody>
+</table>
 <h3 id="return-parameters">Return Parameters</h3>
 <table>
 <thead>
@@ -1948,14 +1964,14 @@
 <tbody>
 <tr>
 <td>errno</td>
-<td>是</td>
+<td>Yes</td>
 <td>int</td>
 <td>0</td>
 <td>Status code</td>
 </tr>
 <tr>
 <td>errmsg</td>
-<td>是</td>
+<td>Yes</td>
 <td>success</td>
 <td>success</td>
 <td>Status Information</td>
@@ -1983,42 +1999,42 @@
 <tbody>
 <tr>
 <td>amount</td>
-<td>is</td>
+<td>Yes</td>
 <td>string</td>
 <td>LINK-BTC</td>
 <td>Quantity Precision</td>
 </tr>
 <tr>
 <td>price</td>
-<td>is</td>
+<td>Yes</td>
 <td>string</td>
 <td>LINK-BTC</td>
 <td>price precision</td>
 </tr>
 <tr>
 <td>minQuantity</td>
-<td>is</td>
+<td>Yes</td>
 <td>string</td>
 <td>0.01</td>
 <td>Minimum order quantity</td>
 </tr>
 <tr>
 <td>maxQuantity</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>100000000</td>
 <td>Maximum order quantity</td>
 </tr>
 <tr>
 <td>minPrice</td>
-<td>is</td>
+<td>Yes</td>
 <td>string</td>
 <td>0.01</td>
 <td>Minimum order price</td>
 </tr>
 <tr>
 <td>maxPrice</td>
-<td>是</td>
+<td>Yes</td>
 <td>string</td>
 <td>100000000</td>
 <td>Maximum order price</td>
@@ -2026,20 +2042,20 @@
 </tbody>
 </table>
 <h3 id="return-example">Return Example</h3>
-<div class="language-json highlight"><span class="filename">JSON</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;errno&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;errmsg&quot;</span><span class="p">:</span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;result&quot;</span><span class="p">:{</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">&quot;BTC-USDT&quot;</span><span class="p">:{</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="nt">&quot;minQuantity&quot;</span><span class="p">:</span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="nt">&quot;maxQuantity&quot;</span><span class="p">:</span><span class="s2">&quot;100000000&quot;</span><span class="p">,</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">            </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="nt">&quot;minPrice&quot;</span><span class="p">:</span><span class="s2">&quot;0.000001&quot;</span><span class="p">,</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">            </span><span class="nt">&quot;maxPrice&quot;</span><span class="p">:</span><span class="s2">&quot;100000&quot;</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
+<div class="language-json highlight"><span class="filename">JSON</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;errno&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">&quot;errmsg&quot;</span><span class="p">:</span><span class="s2">&quot;success&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&quot;result&quot;</span><span class="p">:{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">&quot;BTC-USDT&quot;</span><span class="p">:{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">&quot;minQuantity&quot;</span><span class="p">:</span><span class="s2">&quot;0.01&quot;</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="nt">&quot;maxQuantity&quot;</span><span class="p">:</span><span class="s2">&quot;100000000&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">&quot;price&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="nt">&quot;minPrice&quot;</span><span class="p">:</span><span class="s2">&quot;0.000001&quot;</span><span class="p">,</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="nt">&quot;maxPrice&quot;</span><span class="p">:</span><span class="s2">&quot;100000&quot;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
 </span></code></pre></div>
 
 
