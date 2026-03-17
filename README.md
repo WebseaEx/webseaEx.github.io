@@ -6,12 +6,16 @@ Welcome to the Websea OpenAPI. Below you will find links to our API documentatio
 
 - **English**: [Access Documentation](https://webseaex.github.io/en/)
 - **Simplified Chinese**: [Access Documentation](https://webseaex.github.io/zh/)
+- **Japanese**: [Access Documentation](https://webseaex.github.io/ja/)
+- **Korean**: [Access Documentation](https://webseaex.github.io/ko/)
 
 
 ## Quick Links
 
 - [OpenAPI Documentation EN](https://webseaex.github.io/en/)
 - [OpenAPI Documentation CN](https://webseaex.github.io/zh/)
+- [OpenAPI Documentation JA](https://webseaex.github.io/ja/)
+- [OpenAPI Documentation KO](https://webseaex.github.io/ko/)
 
 
 ## Instructions for Use
@@ -37,12 +41,16 @@ Thank you for choosing Websea OpenAPI!
 
 - **英文（English）**: [访问文档](https://webseaex.github.io/en/)
 - **简体中文（Simplified Chinese）**: [访问文档](https://webseaex.github.io/zh/)
+- **日语（Japanese）**: [访问文档](https://webseaex.github.io/ja/)
+- **韩语（Korean）**: [访问文档](https://webseaex.github.io/ko/)
 
 
 ## 快速链接
 
 - [OpenAPI 文档 EN](https://webseaex.github.io/en/)
 - [OpenAPI 文档 CN](https://webseaex.github.io/zh/)
+- [OpenAPI 文档 JA](https://webseaex.github.io/ja/)
+- [OpenAPI 文档 KO](https://webseaex.github.io/ko/)
 
 
 ## 使用说明
